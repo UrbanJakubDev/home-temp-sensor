@@ -28,13 +28,16 @@ const Sensor = (props: Props) => {
     }
 
     if (data){
-      const date = new Date(data)
+      const date = new Date(data)      
       let year = date.getFullYear()
-      let month = twoDigits(date.getMonth())
-      let day = twoDigits(date.getDay())
+      let month = twoDigits(date.getMonth()+1)
+      let day = twoDigits(date.getDay()+2)
       let hour = twoDigits(date.getHours())
       let minute = twoDigits(date.getMinutes())
       let beautyDate = `${year}-${month}-${day} ${hour}:${minute}`
+
+      console.log(date.getDay());
+      
       return beautyDate
     }
 

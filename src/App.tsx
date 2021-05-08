@@ -26,6 +26,7 @@ const App: React.FC = () => {
       .then(function (response: any) {
         // handle success
         setApiData(response.data);
+        
       })
       .catch(function (error: any) {
         // handle error
