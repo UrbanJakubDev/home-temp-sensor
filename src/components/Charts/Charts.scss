@@ -1,0 +1,15 @@
+.charts-group-wrapper{
+    margin: 1rem auto 0 auto;
+    text-align: right;
+    font-size: 2rem;
+}
+
+.charts-hide-icon{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.hidden{
+    display: none;
+}

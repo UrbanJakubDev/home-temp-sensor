@@ -3,13 +3,15 @@ import "./Sensor.scss";
 import { ThingSpeakResponse } from "../../sensor.model";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import Charts from "../Charts/charts.js"
 
 interface Props {
   data?: ThingSpeakResponse;
+  historyData?: ThingSpeakResponse;
   onRefreshData: () => void;
 }
 
-const Sensor = (props: Props) => {
+const Sensor: React.FC<Props> = (props: Props) => {
   const element = <FontAwesomeIcon icon={faSyncAlt} />;
 
   const roundValues = (value: string | any) => {
@@ -21,27 +23,23 @@ const Sensor = (props: Props) => {
 
   // Beautify Date handler + Set UTC to locall time
   const beautifyDate = (data: string | any) => {
+    const twoDigits = (value: number) => {
+      return (value < 10 ? "0" : "") + value;
+    };
 
-    const twoDigits = (value:number) => {
-      return (value < 10 ? '0': '') + value
+    if (data) {
+      const date = new Date(data);
       
+      let year = date.getFullYear();
+      let month = twoDigits(date.getMonth() + 1);
+      let day = twoDigits(date.getDate());
+      let hour = twoDigits(date.getHours());
+      let minute = twoDigits(date.getMinutes());
+      let beautyDate = `${year}-${month}-${day} ${hour}:${minute}`;
+      return beautyDate;
     }
 
-    if (data){
-      const date = new Date(data)      
-      let year = date.getFullYear()
-      let month = twoDigits(date.getMonth()+1)
-      let day = twoDigits(date.getDay()+2)
-      let hour = twoDigits(date.getHours())
-      let minute = twoDigits(date.getMinutes())
-      let beautyDate = `${year}-${month}-${day} ${hour}:${minute}`
-
-      console.log(date.getDay());
-      
-      return beautyDate
-    }
-
-      return '--'
+    return "--";
   };
 
   const channel = props.data?.channel;
@@ -76,6 +74,7 @@ const Sensor = (props: Props) => {
         </div>
       </div>
       {/* <div className='sensor-info'>more</div> */}
+      <Charts />
     </div>
   );
 };

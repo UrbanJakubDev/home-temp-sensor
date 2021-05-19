@@ -7,10 +7,12 @@ const axios = require("axios").default;
 const App: React.FC = () => {
   // Sensor Data
   const [apiData, setApiData] = useState<ThingSpeakResponse>();
+  const [apiDataHistory, setApiDataHistory] = useState<ThingSpeakResponse>();
 
   useEffect(() => {
     // get Data frist time
     getFromThingSpeak();
+    getFromThingSpeakHistory();
 
     // Get data every 30s
     const interval = setInterval(() => {
@@ -34,6 +36,24 @@ const App: React.FC = () => {
       })
       .then(function () {});
   };
+  
+  // Thingspeak handler
+  const getFromThingSpeakHistory = () => {
+    axios
+      .get("https://api.thingspeak.com/channels/318641/feeds.json?results=6")
+      .then(function (response: any) {
+        // handle success
+        setApiDataHistory(response.data);
+        
+      })
+      .catch(function (error: any) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {});
+  };
+
+
 
   const refreshHandler = () => {
     getFromThingSpeak();
@@ -42,7 +62,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Sensor data={apiData} onRefreshData={refreshHandler} />
+        <Sensor data={apiData} historyData={apiDataHistory} onRefreshData={refreshHandler} />
       </header>
     </div>
   );

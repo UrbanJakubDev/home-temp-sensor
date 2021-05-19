@@ -20,11 +20,12 @@ h4 {
 }
 
 .sensor-info {
+  $sensor-info-color: rgb(202, 212, 58);
   display: flex;
   justify-content: space-between;
   font-size: 2rem;
   padding: 1rem;
-  background-image: linear-gradient(rgb(162, 86, 192), rgb(154, 62, 190));
+  background-image: linear-gradient($sensor-info-color, darken($sensor-info-color, 25%));
   box-shadow: 4px 4px 10px rgb(50, 54, 59);
   border-radius: 15px;
   margin: 1rem auto;
@@ -35,7 +36,8 @@ h4 {
   }
 
   &:hover{
-    background-image: linear-gradient(rgb(154, 62, 190), rgb(127, 51, 156));
+    $sensor-info-color-hover: darken($sensor-info-color, 10%);
+    background-image: linear-gradient($sensor-info-color-hover, darken($sensor-info-color-hover, 25%));
   }
 }
 
@@ -92,7 +94,7 @@ h4 {
   background-image: linear-gradient(rgb(253, 113, 143), rgb(250, 52, 95));
 }
 .humidity-widget {
-  background-image: linear-gradient(rgb(94, 70, 202), rgb(72, 43, 202));
+  background-image: linear-gradient(rgb(94, 70, 202), rgb(67, 39, 189));
 }
 
 .values-container {
