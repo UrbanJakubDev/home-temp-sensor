@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,6 @@ import "./Charts.scss";
 const Charts = (props) => {
   const [chartHidden, setChartHidden] = useState(true);
   const [chartHiddenCls, setChartHiddenCls] = useState("hidden");
-  const [chartData, setChartData] = useState(null);
   const [chartTempData, setChartTempData] = useState(null);
   const [chartHumiData, setChartHumiData] = useState(null);
   const [chartTimeAxisValues, setChartTimeAxisValues] = useState(null);
@@ -55,7 +54,6 @@ const Charts = (props) => {
 
     // Load data from props
     let data = props.data.feeds;
-    setChartData(data);
     setChartTempData(extractTempData(data));
     setChartHumiData(extractHumiData(data));
     setChartTimeAxisValues(extractTimeAxis(data));
