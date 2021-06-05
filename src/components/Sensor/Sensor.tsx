@@ -14,6 +14,8 @@ interface Props {
 const Sensor: React.FC<Props> = (props: Props) => {
   const element = <FontAwesomeIcon icon={faSyncAlt} />;
 
+
+  // Round values function
   const roundValues = (value: string | any) => {
     let valNum = parseFloat(value);
     let roundedNum = valNum.toFixed(1);
@@ -74,7 +76,7 @@ const Sensor: React.FC<Props> = (props: Props) => {
         </div>
       </div>
       {/* <div className='sensor-info'>more</div> */}
-      <Charts />
+      <Charts data={props.historyData} />
     </div>
   );
 };

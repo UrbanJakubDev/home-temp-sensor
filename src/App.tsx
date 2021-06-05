@@ -40,7 +40,7 @@ const App: React.FC = () => {
   // Thingspeak handler
   const getFromThingSpeakHistory = () => {
     axios
-      .get("https://api.thingspeak.com/channels/318641/feeds.json?results=6")
+      .get("https://api.thingspeak.com/channels/318641/feeds.json?results=10")
       .then(function (response: any) {
         // handle success
         setApiDataHistory(response.data);
