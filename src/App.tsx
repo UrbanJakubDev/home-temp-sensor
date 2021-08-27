@@ -28,7 +28,6 @@ const App: React.FC = () => {
       .then(function (response: any) {
         // handle success
         setApiData(response.data);
-        
       })
       .catch(function (error: any) {
         // handle error
@@ -36,7 +35,7 @@ const App: React.FC = () => {
       })
       .then(function () {});
   };
-  
+
   // Thingspeak handler
   const getFromThingSpeakHistory = () => {
     axios
@@ -44,7 +43,6 @@ const App: React.FC = () => {
       .then(function (response: any) {
         // handle success
         setApiDataHistory(response.data);
-        
       })
       .catch(function (error: any) {
         // handle error
@@ -53,8 +51,7 @@ const App: React.FC = () => {
       .then(function () {});
   };
 
-
-
+  // ON CLinck Refresh Button
   const refreshHandler = () => {
     getFromThingSpeak();
   };
@@ -62,7 +59,11 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Sensor data={apiData} historyData={apiDataHistory} onRefreshData={refreshHandler} />
+        <Sensor
+          data={apiData}
+          historyData={apiDataHistory}
+          onRefreshData={refreshHandler}
+        />
       </header>
     </div>
   );

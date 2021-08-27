@@ -17,6 +17,7 @@ const Charts = (props) => {
   const hideIconUp = <FontAwesomeIcon icon={faChevronUp} />;
 
   const extractTempData = (data) => {
+    console.log(data);
     let result = data.map((a) => a.field1);
     return result;
   };
