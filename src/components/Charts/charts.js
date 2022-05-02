@@ -4,6 +4,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import "./Charts.scss";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Charts = (props) => {
   const [chartHidden, setChartHidden] = useState(true);
@@ -17,7 +37,6 @@ const Charts = (props) => {
   const hideIconUp = <FontAwesomeIcon icon={faChevronUp} />;
 
   const extractTempData = (data) => {
-    console.log(data);
     let result = data.map((a) => a.field1);
     return result;
   };
@@ -88,14 +107,15 @@ const Charts = (props) => {
   };
 
   const options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+        text: 'Chart.js Line Chart',
+      },
     },
   };
 

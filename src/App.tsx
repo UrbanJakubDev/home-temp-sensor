@@ -21,6 +21,8 @@ const App: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  
+
   // Thingspeak handler
   const getFromThingSpeak = () => {
     axios
@@ -39,7 +41,7 @@ const App: React.FC = () => {
   // Thingspeak handler
   const getFromThingSpeakHistory = () => {
     axios
-      .get("https://api.thingspeak.com/channels/318641/feeds.json?results=10")
+      .get("https://api.thingspeak.com/channels/318641/feeds.json?results=100")
       .then(function (response: any) {
         // handle success
         setApiDataHistory(response.data);
